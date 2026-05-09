@@ -1,0 +1,23 @@
+{
+  "name": "load-balancer",
+  "version": "1.0.0",
+  "description": "Deterministic load balancer using consistent hashing with virtual nodes.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "simulate": "node src/simulate.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "load-balancer",
+    "consistent-hashing",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {}
+}

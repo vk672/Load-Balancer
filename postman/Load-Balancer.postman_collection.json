@@ -1,0 +1,180 @@
+{
+  "info": {
+    "name": "Load Balancer",
+    "description": "Postman collection for the consistent hashing load balancer assignment.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Route Specific IP",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/route?ip=192.168.1.10"
+      }
+    },
+    {
+      "name": "Route Random IP",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/route"
+      }
+    },
+    {
+      "name": "Route IP With JSON Body",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ip\": \"203.0.113.42\"\n}"
+        },
+        "url": "{{baseUrl}}/route"
+      }
+    },
+    {
+      "name": "Simulate Traffic",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"requestCount\": 10\n}"
+        },
+        "url": "{{baseUrl}}/simulate"
+      }
+    },
+    {
+      "name": "List Nodes",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/nodes"
+      }
+    },
+    {
+      "name": "List Node Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/nodes/health"
+      }
+    },
+    {
+      "name": "Add Weighted Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id\": \"Node-D\",\n  \"weight\": 2,\n  \"healthy\": true\n}"
+        },
+        "url": "{{baseUrl}}/nodes"
+      }
+    },
+    {
+      "name": "Mark Node Unhealthy",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"healthy\": false\n}"
+        },
+        "url": "{{baseUrl}}/nodes/Node-A/health"
+      }
+    },
+    {
+      "name": "Change Node Weight",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"weight\": 3\n}"
+        },
+        "url": "{{baseUrl}}/nodes/Node-B/weight"
+      }
+    },
+    {
+      "name": "Remove Node",
+      "request": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/nodes/Node-D"
+      }
+    },
+    {
+      "name": "Metrics",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/metrics"
+      }
+    },
+    {
+      "name": "Hash Ring Preview",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/ring?limit=10"
+      }
+    },
+    {
+      "name": "Validate IP",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"ip\": \"192.168.1.10\"\n}"
+        },
+        "url": "{{baseUrl}}/validate-ip"
+      }
+    },
+    {
+      "name": "Reset Metrics",
+      "request": {
+        "method": "POST",
+        "url": "{{baseUrl}}/metrics/reset"
+      }
+    }
+  ]
+}
