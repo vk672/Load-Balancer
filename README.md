@@ -105,6 +105,23 @@ API Response
 
 ## Getting Started
 
+Live deployment:
+
+```text
+https://load-balancer-p89z.onrender.com
+```
+
+Important deployed links:
+
+```text
+Health: https://load-balancer-p89z.onrender.com/health
+Route Example: https://load-balancer-p89z.onrender.com/route?ip=192.168.1.10
+Nodes: https://load-balancer-p89z.onrender.com/nodes
+Node Health: https://load-balancer-p89z.onrender.com/nodes/health
+Metrics: https://load-balancer-p89z.onrender.com/metrics
+Hash Ring: https://load-balancer-p89z.onrender.com/ring?limit=10
+```
+
 Install dependencies:
 
 ```bash
@@ -120,7 +137,7 @@ npm start
 Server URL:
 
 ```text
-http://localhost:5000
+https://load-balancer-p89z.onrender.com
 ```
 
 Development mode with auto-restart:
@@ -186,7 +203,7 @@ If no IP is provided, the built-in random IP generator is used.
 Example:
 
 ```bash
-curl "http://localhost:5000/route?ip=192.168.1.10"
+curl "https://load-balancer-p89z.onrender.com/route?ip=192.168.1.10"
 ```
 
 Example response:
@@ -212,7 +229,7 @@ Generates random IPs and routes them through the load balancer.
 Example:
 
 ```bash
-curl -X POST "http://localhost:5000/simulate" ^
+curl -X POST "https://load-balancer-p89z.onrender.com/simulate" ^
   -H "Content-Type: application/json" ^
   -d "{\"requestCount\":10}"
 ```
@@ -228,7 +245,7 @@ Returns all configured backend nodes and their current status.
 Example:
 
 ```bash
-curl "http://localhost:5000/nodes"
+curl "https://load-balancer-p89z.onrender.com/nodes"
 ```
 
 ### Add a Node
@@ -242,7 +259,7 @@ Adds a new backend node and rebuilds the hash ring.
 Example:
 
 ```bash
-curl -X POST "http://localhost:5000/nodes" ^
+curl -X POST "https://load-balancer-p89z.onrender.com/nodes" ^
   -H "Content-Type: application/json" ^
   -d "{\"id\":\"Node-D\",\"weight\":2}"
 ```
@@ -260,7 +277,7 @@ Unhealthy nodes are skipped during routing without removing them from configurat
 Example:
 
 ```bash
-curl -X PATCH "http://localhost:5000/nodes/Node-A/health" ^
+curl -X PATCH "https://load-balancer-p89z.onrender.com/nodes/Node-A/health" ^
   -H "Content-Type: application/json" ^
   -d "{\"healthy\":false}"
 ```
@@ -276,7 +293,7 @@ Updates node weight and rebuilds the ring.
 Example:
 
 ```bash
-curl -X PATCH "http://localhost:5000/nodes/Node-B/weight" ^
+curl -X PATCH "https://load-balancer-p89z.onrender.com/nodes/Node-B/weight" ^
   -H "Content-Type: application/json" ^
   -d "{\"weight\":3}"
 ```
@@ -292,7 +309,7 @@ Removes a backend node and rebuilds the ring.
 Example:
 
 ```bash
-curl -X DELETE "http://localhost:5000/nodes/Node-C"
+curl -X DELETE "https://load-balancer-p89z.onrender.com/nodes/Node-C"
 ```
 
 ### Node Health Summary
@@ -306,7 +323,7 @@ Returns health information for all nodes.
 Example:
 
 ```bash
-curl "http://localhost:5000/nodes/health"
+curl "https://load-balancer-p89z.onrender.com/nodes/health"
 ```
 
 ### Metrics
@@ -328,7 +345,7 @@ Returns metrics such as:
 Example:
 
 ```bash
-curl "http://localhost:5000/metrics"
+curl "https://load-balancer-p89z.onrender.com/metrics"
 ```
 
 ### Hash Ring Preview
@@ -342,7 +359,7 @@ Displays a portion of the sorted virtual-node ring for inspection and debugging.
 Example:
 
 ```bash
-curl "http://localhost:5000/ring?limit=10"
+curl "https://load-balancer-p89z.onrender.com/ring?limit=10"
 ```
 
 ### Validate an IP
@@ -354,7 +371,7 @@ POST /validate-ip
 Example:
 
 ```bash
-curl -X POST "http://localhost:5000/validate-ip" ^
+curl -X POST "https://load-balancer-p89z.onrender.com/validate-ip" ^
   -H "Content-Type: application/json" ^
   -d "{\"ip\":\"192.168.1.10\"}"
 ```
@@ -383,7 +400,7 @@ postman/Load-Balancer.postman_collection.json
 Default variable:
 
 ```text
-http://localhost:5000
+https://load-balancer-p89z.onrender.com
 ```
 
 ## Project Structure
