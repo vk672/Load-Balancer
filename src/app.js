@@ -9,6 +9,15 @@ function createApp() {
   app.locals.metrics = metrics;
 
   app.use(express.json());
+  // body-parser 2 leaves req.body undefined when a request has no body.
+  // Default it to an object so existing handlers can read body properties.
+  app.use((req, res, next) => {
+    if (req.body === undefined) {
+      req.body = {};
+    }
+
+    return next();
+  });
   app.use(createRateLimiter({
     windowMs: 60 * 1000,
     maxRequests: 120

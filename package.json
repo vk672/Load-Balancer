@@ -19,5 +19,9 @@
   "dependencies": {
     "express": "^4.19.2"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "overrides": {
+    "body-parser": "2.4.0",
+    "proxy-addr": "2.0.8"
+  }
 }
